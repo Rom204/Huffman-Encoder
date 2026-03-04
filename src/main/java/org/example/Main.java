@@ -1,14 +1,16 @@
 package org.example;
 
 import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        String testStr = "mission accomplished: the huffman tree is operational in the field";
-        System.out.println("Original: " + testStr);
+        Scanner reader = new Scanner(System.in);
+        String userInput = reader.nextLine();
+        System.out.println("Original: " + userInput);
 
         HuffmanEncoder hfe = new HuffmanEncoder();
-        String compressedText = hfe.compress(testStr);
+        String compressedText = hfe.compress(userInput);
         System.out.println("Compressed: " + compressedText);
 
         Map<Character, String> codes = hfe.getHuffmanTree().getCodes();
