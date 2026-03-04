@@ -8,14 +8,7 @@ public class HuffmanEncoder {
 
     // compress text into bit-string
     public String compress (String text){
-        Map<Character, Integer> charFrequencies = new HashMap<>();
-
-        for (int i = 0; i < text.length(); i++){
-            char current = text.charAt(i);
-            int currentValue = charFrequencies.getOrDefault(current, 0);
-            charFrequencies.put(current, currentValue + 1);
-        }
-
+        Map<Character, Integer> charFrequencies = buildFrequenciesMap(text);
         HuffmanTree ht = new HuffmanTree(charFrequencies);
         this.ht = ht;
         Map<Character, String> codes = ht.getCodes();
@@ -29,6 +22,15 @@ public class HuffmanEncoder {
         return encodedText.toString();
     }
 
+    public Map<Character, Integer> buildFrequenciesMap(String text){
+        Map<Character, Integer> charFrequencies = new HashMap<>();
+
+        for (char c : text.toCharArray()){
+            int currentValue = charFrequencies.getOrDefault(c, 0);
+            charFrequencies.put(c, currentValue + 1);
+        }
+        return charFrequencies;
+    }
     public HuffmanTree getHuffmanTree(){
         return this.ht;
     }
